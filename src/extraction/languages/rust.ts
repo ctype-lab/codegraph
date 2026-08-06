@@ -45,6 +45,9 @@ export const rustExtractor: LanguageExtractor = {
   // (`field_declaration_list`) and the same `impl Trait for U` attachment
   // point. Extracted with kind `struct` because NodeKind has no `union`.
   structTypes: ['struct_item', 'union_item'],
+  // `struct Unit;` is a unit struct — a complete definition with no body
+  // field, not a forward declaration. Rust has no forward declarations.
+  allowBodilessStruct: true,
   enumTypes: ['enum_item'],
   enumMemberTypes: ['enum_variant'],
   typeAliasTypes: ['type_item'], // Rust type aliases
