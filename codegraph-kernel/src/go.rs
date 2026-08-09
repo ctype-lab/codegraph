@@ -675,7 +675,7 @@ impl<'t> Walker<'t> {
     fn extract_import(&mut self, node: Node<'t>) {
         let parent = self.top_row();
         let imports_kind = edge_kind_index("imports").unwrap();
-        let mut handle_spec = |w: &mut Self, spec: Node<'t>| {
+        let handle_spec = |w: &mut Self, spec: Node<'t>| {
             let lit = (0..spec.named_child_count())
                 .filter_map(|i| spec.named_child(i))
                 .find(|c| c.kind() == "interpreted_string_literal");
@@ -1077,7 +1077,7 @@ impl<'t> Walker<'t> {
         // Shadow prune — Go declarator shapes: const_spec/var_spec (name =
         // first child) and short_var_declaration (left / expression_list).
         let mut decl_counts: HashMap<&str, u32> = HashMap::new();
-        let mut bump = |decl_counts: &mut HashMap<&'t str, u32>, name_node: Option<Node<'t>>, src: &'t str, targets: &HashMap<String, u32>| {
+        let bump = |decl_counts: &mut HashMap<&'t str, u32>, name_node: Option<Node<'t>>, src: &'t str, targets: &HashMap<String, u32>| {
             if let Some(n) = name_node {
                 if matches!(n.kind(), "identifier" | "simple_identifier") {
                     let nm = &src[n.byte_range()];
