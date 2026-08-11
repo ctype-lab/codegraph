@@ -80,6 +80,9 @@ target-linux/
 .kommandr/kommandr.db-wal
 .kommandr/kommandr.db-shm
 
-#
+# makepkg build artifacts. A makepkg run with $srcdir pointed at src/ drops a
+# full clone at src/codegraph-git plus its npm cache; the clone shadows the
+# repo's own telemetry-* workers inside rootDir, which breaks `npm run build`.
 install/*
-src/npm-cache/*
+src/codegraph-git/
+src/npm-cache/
