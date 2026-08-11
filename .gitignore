@@ -79,3 +79,7 @@ target-linux/
 .kommandr/kommandr.db
 .kommandr/kommandr.db-wal
 .kommandr/kommandr.db-shm
+
+#
+install/*
+src/npm-cache/*
